@@ -9,6 +9,7 @@ function App() {
   const [tableData, setTableData] = useState([])
 
   const changeData = () => {
+    setTableData([])
     setLoading(true)
     setTimeout(() => {
       axios.get("https://gist.githubusercontent.com/almost/7748738/raw/575f851d945e2a9e6859fb2308e95a3697bea115/countries.json")
@@ -29,19 +30,11 @@ function App() {
     <>
       <div className="conatiner mt-4">
         <Comp loading={loading} changeData={changeData} />
-
-        {/* <ul>
-          {tableData && tableData.map((value, index) =>
-            <li key={index}>
-              {value.name}
-            </li>
-          )}
-        </ul> */}
         <div className="container text-center mt-5 mb-5">
           <div className="row row-cols-3">
           {tableData && tableData.map((value, index) =>
             <>
-            <div className="col bg-light text-secondary p-1" style={{fontSize: "10px" ,border: "1px black solid"}}><strong>{value.code} - {value.name}</strong></div>
+            <div key={index} className="col bg-light text-secondary p-1" style={{fontSize: "10px" ,border: "1px black solid"}}><strong>{value.code} - {value.name}</strong></div>
             </>
           )}
           </div>
