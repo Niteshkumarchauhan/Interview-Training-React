@@ -12,11 +12,12 @@ function App() {
     setTableData([])
     setLoading(true)
     setTimeout(() => {
-      axios.get("https://gist.githubusercontent.com/almost/7748738/raw/575f851d945e2a9e6859fb2308e95a3697bea115/countries.json")
+      axios.get("https://gist.githubusercontent.com/pratikbutani/20ded7151103bb30737e2ab1b336eb02/raw/be1391e25487ded4179b5f1c8eedb81b01226216/country-flag.json")
         .then(async (res) => {
           // res
           setLoading(false)
           setTableData(res.data);
+          console.log(tableData);
 
         }).catch((err) => {
           // err
@@ -32,9 +33,13 @@ function App() {
         <Comp loading={loading} changeData={changeData} />
         <div className="container text-center mt-5 mb-5">
           <div className="row row-cols-3">
-          {tableData && tableData.map((value, index) =>
-            <div key={index} className="col bg-light text-secondary p-1" style={{fontSize: "10px" ,border: "1px black solid"}}><strong>{value.code} - {value.name}</strong></div>
-          )}
+            {tableData && tableData.map((value, index) =>
+              <div key={index} className="col bg-light text-secondary p-1" style={{ textAlign:"left",fontSize: "10px", border: "1px black solid" }}>
+                {/* svg */}
+                <img src={value.flag} alt={value.country} width="40" height="20"/>
+                {/* svg */}
+                <strong>{value.code} - {value.country}</strong></div>
+            )}
           </div>
         </div>
       </div>
