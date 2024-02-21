@@ -33,9 +33,7 @@ function App() {
         <div className="container text-center mt-5 mb-5">
           <div className="row row-cols-3">
           {tableData && tableData.map((value, index) =>
-            <>
             <div key={index} className="col bg-light text-secondary p-1" style={{fontSize: "10px" ,border: "1px black solid"}}><strong>{value.code} - {value.name}</strong></div>
-            </>
           )}
           </div>
         </div>
