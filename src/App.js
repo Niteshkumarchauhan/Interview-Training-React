@@ -17,7 +17,6 @@ function App() {
           // res
           setLoading(false)
           setTableData(res.data);
-          console.log(tableData);
 
         }).catch((err) => {
           // err
@@ -34,11 +33,34 @@ function App() {
         <div className="container text-center mt-5 mb-5">
           <div className="row row-cols-3">
             {tableData && tableData.map((value, index) =>
-              <div key={index} className="col bg-light text-secondary p-1" style={{ textAlign:"left",fontSize: "10px", border: "1px black solid" }}>
+              <div key={index} className="col bg-light text-secondary p-1" style={{ textAlign: "left", fontSize: "10px", border: "1px black solid" }} data-bs-toggle="modal" data-bs-target={"#staticBackdrop" + index}>
                 {/* svg */}
-                <img src={value.flag} alt={value.country} width="40" height="20"/>
+                <img src={value.flag} alt={value.country} width="40" height="20" />
                 {/* svg */}
-                <strong>{value.code} - {value.country}</strong></div>
+                <strong>{value.code?.toUpperCase()} - {value.country}</strong>
+                <div
+                  className="modal fade"
+                  id={"staticBackdrop" + index}
+                  data-bs-keyboard="false"
+                  tabIndex={-1}
+                  aria-labelledby="staticBackdropLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                      <div className="modal-body p-0">
+                        <div className="card">
+                          <img src={value.flag} className="card-img-top" height={300} alt={value.country} />
+                          <div className="card-body text-center">
+                            <h5 className="card-title text-secondary" style={{fontSize:"35px"}}><strong>{value.code?.toUpperCase()} - {value.country}</strong></h5>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
